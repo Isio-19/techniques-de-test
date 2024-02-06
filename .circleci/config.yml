@@ -8,10 +8,10 @@ jobs:
       - checkout
       - run: mvn test 
 
-workflow:
+workflows:
   test:
     jobs:
-      - test
-    filters:
-      branches:
-        only: master
+      - test:
+        filters:
+          branches:
+            only: master
