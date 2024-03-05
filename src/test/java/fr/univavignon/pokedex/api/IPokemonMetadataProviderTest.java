@@ -55,5 +55,15 @@ public class IPokemonMetadataProviderTest {
         assertEquals(90, metadata.getStamina());
 
         Mockito.verify(pokemonMetadataProvider).getPokemonMetadata(0);
+        
+        metadata = pokemonMetadataProvider.getPokemonMetadata(133);
+        
+        assertEquals(133, metadata.getIndex());
+        assertEquals("Aquali", metadata.getName());
+        assertEquals(186, metadata.getAttack());
+        assertEquals(168, metadata.getDefense());
+        assertEquals(260, metadata.getStamina());
+
+        Mockito.verify(pokemonMetadataProvider).getPokemonMetadata(133);
     }
 }
