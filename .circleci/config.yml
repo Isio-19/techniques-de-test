@@ -8,15 +8,17 @@ jobs:
       - checkout
       - run: mvn test 
 
+orbs:
+  codecov: codecov/codecov@4.0.1
 workflows:
   test:
     jobs:
       - test:
         filters:
           branches:
-            only: master
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: Isio-19/techniques-de-test
+            only: master            
+  upload-to-codecov:
+    jobs:
+      - checkout 
+      - codecov/upload
+
