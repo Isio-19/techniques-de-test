@@ -12,7 +12,9 @@ jobs:
       - image: cimg/openjdk:21.0.2-node
     steps:
       - checkout
-      - codecov/upload
+      - run : mvn test
+      - store_artifacts:
+          path:  target
 
 
 orbs:
