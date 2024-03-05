@@ -15,6 +15,7 @@ jobs:
       - run : mvn test
       - store_artifacts:
           path:  target
+      - codecov/upload
 
 
 orbs:
