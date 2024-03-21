@@ -1,6 +1,7 @@
 package fr.univavignon.pokedex.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,8 +101,10 @@ public class IPokedexTest {
     public void testSIze2() {
         Pokemon Bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
         Pokemon Aquali = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 1.0);
+        Pokemon Missino = new Pokemon(-1, "Aquali", 0, 0, 0, 0, 0, 0, 0, 1.0);
         pokedex.addPokemon(Bulbizarre);
         pokedex.addPokemon(Aquali);
+        assertThrows(PokedexException.class, () -> {pokedex.addPokemon(Missino);});
         
         assertEquals(2, pokedex.size());
 
@@ -128,6 +131,8 @@ public class IPokedexTest {
         assertEquals(4000, pokemon.getDust());
         assertEquals(4, pokemon.getCandy());
         assertEquals(0.56, pokemon.getIv(), 0.01);
+
+        assertThrows(PokedexException.class, () -> {pokedex.getPokemon(-1);});
 
         Mockito.verify(pokedex).getPokemon(0);
 	}
