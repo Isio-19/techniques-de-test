@@ -23,7 +23,6 @@ public class IPokedexFactoryTest {
 
     @Test
     public void testCreatePokedex() {
-
         IPokedex iPokedexTest = iPokedexFactory.createPokedex(metadataProvider, pokemonFactory);
         assertTrue(iPokedexTest instanceof IPokedex);
         Mockito.verify(iPokedexFactory).createPokedex(metadataProvider, pokemonFactory);
