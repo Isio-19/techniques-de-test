@@ -63,5 +63,8 @@ public class IPokemonFactoryTest {
         assertEquals(202, pokemon.getHp());
         assertEquals(5000, pokemon.getDust());
         assertEquals(4, pokemon.getCandy());
+
+        pokemon = iPokemonFactory.createPokemon(-1, 0, 0, 0, 0);
+        assertEquals(null, pokemon);
     }
 }
