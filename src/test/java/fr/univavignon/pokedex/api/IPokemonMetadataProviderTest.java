@@ -40,5 +40,6 @@ public class IPokemonMetadataProviderTest {
         assertEquals(207, metadata.getStamina());
 
         assertThrows(PokedexException.class, () -> {pokemonMetadataProvider.getPokemonMetadata(-1);});
+        assertThrows(PokedexException.class, () -> {pokemonMetadataProvider.getPokemonMetadata(151);});
     }
 }
