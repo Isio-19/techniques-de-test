@@ -1,22 +1,23 @@
 package fr.univavignon.pokedex;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import fr.univavignon.pokedex.api.IPokedex;
+import fr.univavignon.pokedex.api.IPokemonFactory;
+import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
 import fr.univavignon.pokedex.api.PokedexException;
 import fr.univavignon.pokedex.api.Pokemon;
 import fr.univavignon.pokedex.api.PokemonMetadata;
 
 public class Pokedex implements IPokedex {
-    PokemonFactory factory;
-    PokemonMetadataProvider provider;
+    IPokemonFactory factory;
+    IPokemonMetadataProvider provider;
     List<Pokemon> pokemonList;
 
-    public Pokedex(PokemonMetadataProvider pokemonMetadataProvider, PokemonFactory pokemonFactory) {
-        provider = pokemonMetadataProvider;
+    public Pokedex(IPokemonMetadataProvider metadataProvider, IPokemonFactory pokemonFactory) {
+        provider = metadataProvider;
         factory = pokemonFactory;
         pokemonList = new ArrayList<Pokemon>();
     }

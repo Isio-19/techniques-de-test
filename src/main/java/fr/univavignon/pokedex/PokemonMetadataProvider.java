@@ -18,9 +18,8 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
     JSONArray pokemonMetadata;
 
     public PokemonMetadataProvider() throws IOException {
-        URL url;
         try {
-            url = new URL("https://pogoapi.net/api/v1/pokemon_stats.json");
+            URL url = new URL("https://pogoapi.net/api/v1/pokemon_stats.json");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
 
@@ -41,12 +40,12 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 
     @Override
     public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
-        if (index < 0 || index > 150) {
+        if (index < 0 || index > 150)
             throw new PokedexException("Given Pokemon ID is out of range.");
-        }
 
         JSONObject pokemon = pokemonMetadata.getJSONObject(index);
 
+        index = pokemon.getInt("pokemon_id");
         String name = pokemon.getString("pokemon_name");
         int attack = pokemon.getInt("base_attack");
         int defense = pokemon.getInt("base_defense");
