@@ -3,12 +3,16 @@ package fr.univavignon.pokedex.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import fr.univavignon.pokedex.Pokedex;
+import fr.univavignon.pokedex.PokemonFactory;
+import fr.univavignon.pokedex.PokemonMetadataProvider;
 
 /**
  * IPokedexTest
@@ -20,10 +24,36 @@ public class IPokedexTest {
     List<Pokemon> listPokemons;
 
     @Before
-    public void init() throws PokedexException {
-        metadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
-        pokemonFactory = Mockito.mock(IPokemonFactory.class);
+    public void init() throws PokedexException, MalformedURLException, IOException {
+        metadataProvider = new PokemonMetadataProvider();
+        pokemonFactory = new PokemonFactory(metadataProvider);
         pokedex = new Pokedex(metadataProvider, pokemonFactory);
+    }
+
+    @Test
+    public void testCreatePokemon() {
+        Pokemon pokemon = pokedex.createPokemon(0, 1, 2, 3, 4);
+
+        assertEquals(0, pokemon.getIndex());
+        assertEquals(1, pokemon.getCp());
+        assertEquals(2, pokemon.getHp());
+        assertEquals(3, pokemon.getDust());
+        assertEquals(4, pokemon.getCandy());
+    }
+
+    @Test
+    public void testGetPokemonMetadata() throws PokedexException {
+        Pokemon Bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
+        pokedex.addPokemon(Bulbizarre);
+        
+        PokemonMetadata metadata = pokedex.getPokemonMetadata(0);
+
+        // values are not the same because the api's values are not the same
+        assertEquals(1, metadata.getIndex());
+        assertEquals("Bulbasaur", metadata.getName());
+        assertEquals(118, metadata.getAttack());
+        assertEquals(111, metadata.getDefense());
+        assertEquals(128, metadata.getStamina());
     }
 
     @Test
