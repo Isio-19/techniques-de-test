@@ -1,6 +1,7 @@
 package fr.univavignon.pokedex.api;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,28 +25,27 @@ public class IPokemonFactoryTest {
         iPokemonFactory = new PokemonFactory(metadataProvider);
 
         Mockito.when(metadataProvider.getPokemonMetadata(Mockito.anyInt())).thenAnswer(
-            new Answer<PokemonMetadata>() {
-                public PokemonMetadata answer(InvocationOnMock invocationOnMock) throws Throwable {
-                    int pokemonId = invocationOnMock.getArgument(0);
+                new Answer<PokemonMetadata>() {
+                    public PokemonMetadata answer(InvocationOnMock invocationOnMock) throws Throwable {
+                        int pokemonId = invocationOnMock.getArgument(0);
 
-                    if (pokemonId < 0) {
-                        throw new PokedexException("The given Pokemon Id is less than 0");
-                    } 
-                    if (pokemonId > 150 ) {
-                        throw new PokedexException("The given Pokemon Id is greater than 150");
-                    }
+                        if (pokemonId < 0) {
+                            throw new PokedexException("The given Pokemon Id is less than 0");
+                        }
+                        if (pokemonId > 150) {
+                            throw new PokedexException("The given Pokemon Id is greater than 150");
+                        }
 
-                    switch (pokemonId) {
-                        case 0:
-                            return new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
-                        case 133:
-                            return new PokemonMetadata(133, "Aquali", 186, 168, 260);
-                        default:
-                            return new PokemonMetadata(pokemonId, "PokemonSansNom", 0, 0, 0);
+                        switch (pokemonId) {
+                            case 0:
+                                return new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
+                            case 133:
+                                return new PokemonMetadata(133, "Aquali", 186, 168, 260);
+                            default:
+                                return new PokemonMetadata(pokemonId, "PokemonSansNom", 0, 0, 0);
+                        }
                     }
-                }
-            }
-        );
+                });
     }
 
     @Test
@@ -56,7 +56,7 @@ public class IPokemonFactoryTest {
         assertEquals(64, pokemon.getHp());
         assertEquals(4000, pokemon.getDust());
         assertEquals(4, pokemon.getCandy());
-        
+
         pokemon = iPokemonFactory.createPokemon(133, 2729, 202, 5000, 4);
         assertEquals(133, pokemon.getIndex());
         assertEquals(2729, pokemon.getCp());

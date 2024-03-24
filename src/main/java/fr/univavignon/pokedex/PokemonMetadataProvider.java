@@ -17,25 +17,21 @@ import fr.univavignon.pokedex.api.PokemonMetadata;
 public class PokemonMetadataProvider implements IPokemonMetadataProvider {
     JSONArray pokemonMetadata;
 
-    public PokemonMetadataProvider() throws IOException {
-        try {
-            URL url = new URL("https://pogoapi.net/api/v1/pokemon_stats.json");
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
+    public PokemonMetadataProvider() throws IOException, MalformedURLException {
+        URL url = new URL("https://pogoapi.net/api/v1/pokemon_stats.json");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-            String inputLine;
-            StringBuffer content = new StringBuffer();
-            while ((inputLine = in.readLine()) != null)
-                content.append(inputLine);
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null)
+            content.append(inputLine);
 
-            in.close();
+        in.close();
 
-            pokemonMetadata = new JSONArray(content.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        pokemonMetadata = new JSONArray(content.toString());
     }
 
     @Override
