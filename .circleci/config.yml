@@ -21,6 +21,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-node
     steps:
       - checkout
+      - run: mvn test
       - store_artifacts:
           path: target/checkstyle
 
