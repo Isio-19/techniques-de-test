@@ -44,6 +44,7 @@ jobs:
       - run :
             name: Installing dependencies
             command: |
+              ls -a
               npm install need sudo
               git config user.email "gerome12327@gmail.com"
               git config user.name "Isio19"
