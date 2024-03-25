@@ -44,7 +44,7 @@ public class IPokedexTest {
     public void testGetPokemonMetadata() throws PokedexException {
         Pokemon Bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
         pokedex.addPokemon(Bulbizarre);
-        
+
         PokemonMetadata metadata = pokedex.getPokemonMetadata(0);
 
         // values are not the same because the api's values are not the same
