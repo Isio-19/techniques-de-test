@@ -24,11 +24,6 @@ jobs:
       - run: mvn test
       - store_artifacts:
           path: target/checkstyle
-  generate-checkstyle-badge:
-    docker:
-      - image: cimg/openjdk:21.0.2-node
-    steps:
-      - checkout
       - run: mvn post-site
 
 orbs:
