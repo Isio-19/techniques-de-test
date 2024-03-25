@@ -2,5 +2,4 @@
 .settings
 .project
 target/*
-
 !target/site/badges/checkstyle-result.svg
