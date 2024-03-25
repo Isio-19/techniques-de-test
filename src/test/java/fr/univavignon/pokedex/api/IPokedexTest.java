@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import fr.univavignon.pokedex.Pokedex;
 import fr.univavignon.pokedex.PokemonFactory;
 import fr.univavignon.pokedex.PokemonMetadataProvider;
