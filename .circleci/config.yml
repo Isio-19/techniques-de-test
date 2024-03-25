@@ -14,8 +14,15 @@ jobs:
       - checkout
       - run: mvn test
       - store_artifacts:
-          path: target
+          path: target/codecov
       - codecov/upload
+  checkstyle:
+    docker:
+      - image: cimg/openjdk:21.0.2-node
+    steps:
+      - checkout
+      - store_artifacts:
+          path: target/checkstyle
 
 orbs:
   codecov: codecov/codecov@4.0.1
@@ -29,3 +36,6 @@ workflows:
   upload-to-codecov:
     jobs:
       - codecov-upload
+  checkstyle:
+    jobs:
+      - checkstyle
