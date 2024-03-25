@@ -7,15 +7,22 @@ import fr.univavignon.pokedex.api.Pokemon;
 import fr.univavignon.pokedex.api.PokemonMetadata;
 
 /**
- * PokemonFactory
+ * Implementation of the IPokemonFactory interface
  */
 public class PokemonFactory implements IPokemonFactory {
     IPokemonMetadataProvider metadataProvider;
 
+    /**
+     * Constructor using a PokemonMetadataProvider
+     * @param metadataProvider PokemonMetadataProvider
+     */
     public PokemonFactory(IPokemonMetadataProvider metadataProvider) {
         this.metadataProvider = metadataProvider;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
         try {

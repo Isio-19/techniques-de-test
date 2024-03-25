@@ -14,9 +14,18 @@ import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
 import fr.univavignon.pokedex.api.PokedexException;
 import fr.univavignon.pokedex.api.PokemonMetadata;
 
+/**
+ * Implementation of the IPokemonMetadataProvider interface
+ */
 public class PokemonMetadataProvider implements IPokemonMetadataProvider {
     JSONArray pokemonMetadata;
 
+    /**
+     * Default constructor
+     * 
+     * @throws IOException Exception thrown if the link to the API doesn't return anything
+     * @throws MalformedURLException Exception thrown if the API used to build the Pokemon Metadata provider is invalid
+     */
     public PokemonMetadataProvider() throws IOException, MalformedURLException {
         URL url = new URL("https://pogoapi.net/api/v1/pokemon_stats.json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
