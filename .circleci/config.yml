@@ -25,6 +25,28 @@ jobs:
       - store_artifacts:
           path: target/checkstyle
       - run: mvn post-site
+  build-docs:
+    docker:
+      - image: cimg/openjdk:21.0.2-node
+    steps:
+      - checkout
+      - run: mvn javadoc:javadoc
+      - persist_to_workspace:
+          root: target/site
+          paths: apidocs
+  deploy-docs:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: target/site
+      - run :
+          npm install -g --silent gh-pages@2.0.1
+          git config user.email "ci-build@klukas.net"
+          git config user.name "ci-build"
+      - run : gh-pages --dist target/site/apidocs
+
 
 orbs:
   codecov: codecov/codecov@4.0.1
@@ -41,3 +63,7 @@ workflows:
   checkstyle:
     jobs:
       - checkstyle
+  make-docs:
+    jobs:
+      - build-docs
+      - deploy-docs
