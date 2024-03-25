@@ -64,7 +64,7 @@
 
                             <dataFile>target/jacoco.exec</dataFile>
                             <!-- Sets the output directory for the code coverage report. -->
-                            <outputDirectory>target/my-reports</outputDirectory>
+                            <outputDirectory>target/jacoco/my-reports</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -88,7 +88,7 @@
                             </goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>target/checkstyle/</outputDirectory>
+                            <outputDirectory>target/checkstyle</outputDirectory>
                             
                         </configuration>
                     </execution>
