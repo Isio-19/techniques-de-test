@@ -45,7 +45,7 @@ public class Pokedex implements IPokedex {
 
     @Override
     public Pokemon getPokemon(int id) throws PokedexException {
-        for (int i=0; i<pokemonList.size(); i++) {
+        for (int i = 0; i < pokemonList.size(); i++) {
             if (pokemonList.get(i).getIndex() == id)
                 return pokemonList.get(i);
         }
@@ -55,13 +55,13 @@ public class Pokedex implements IPokedex {
 
     @Override
     public List<Pokemon> getPokemons() {
-        List<Pokemon> returnList = new ArrayList<Pokemon>(pokemonList) ;
+        List<Pokemon> returnList = new ArrayList<Pokemon>(pokemonList);
         return returnList;
     }
-    
+
     @Override
     public List<Pokemon> getPokemons(Comparator<Pokemon> order) {
-        List<Pokemon> returnList = new ArrayList<Pokemon>(pokemonList) ;
+        List<Pokemon> returnList = new ArrayList<Pokemon>(pokemonList);
         returnList.sort(order);
         return returnList;
     }

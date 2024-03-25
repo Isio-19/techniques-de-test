@@ -22,7 +22,7 @@ public class IPokemonTrainerFactoryTest {
         pokedexFactory = Mockito.mock(IPokedexFactory.class);
         metadataProvider = Mockito.mock(IPokemonMetadataProvider.class);
         pokemonFactory = Mockito.mock(IPokemonFactory.class);
-        
+
         trainerFactory = new PokemonTrainerFactory(pokedexFactory, metadataProvider, pokemonFactory);
     }
 

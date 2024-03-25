@@ -1,22 +1,21 @@
 version: 2.1
 
 jobs:
-  test: 
+  test:
     docker:
       - image: cimg/openjdk:21.0.2-node
     steps:
       - checkout
-      - run: mvn test 
+      - run: mvn test
   codecov-upload:
     docker:
       - image: cimg/openjdk:21.0.2-node
     steps:
       - checkout
-      - run : mvn test
+      - run: mvn test
       - store_artifacts:
-          path:  target
+          path: target
       - codecov/upload
-
 
 orbs:
   codecov: codecov/codecov@4.0.1

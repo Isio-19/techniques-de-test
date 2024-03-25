@@ -14,10 +14,11 @@ public class PokemonTrainerFactory implements IPokemonTrainerFactory {
     IPokemonFactory pokemonFactory;
     IPokedex pokedex;
 
-    public PokemonTrainerFactory(IPokedexFactory pokedexFactory, IPokemonMetadataProvider metadataProvider, IPokemonFactory pokemonFactory) {
+    public PokemonTrainerFactory(IPokedexFactory pokedexFactory, IPokemonMetadataProvider metadataProvider,
+            IPokemonFactory pokemonFactory) {
         this.pokedexFactory = pokedexFactory;
         this.metadataProvider = metadataProvider;
-        this.pokemonFactory = pokemonFactory; 
+        this.pokemonFactory = pokemonFactory;
         pokedex = pokedexFactory.createPokedex(metadataProvider, pokemonFactory);
     }
 
