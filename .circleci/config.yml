@@ -33,7 +33,7 @@ jobs:
       - run: mvn javadoc:javadoc
       - persist_to_workspace:
           root: target/site
-          paths: apidocs
+          paths: [apidocs]
   deploy-docs:
     docker:
       - image: cimg/openjdk:21.0.2-node
@@ -41,18 +41,18 @@ jobs:
       - checkout
       - attach_workspace:
           at: target/site
-      - run :
-            name: Installing dependencies
-            command: |
-              ls target/site/apidocs -a
-              npm install need sudo
-              git config user.email "gerome12327@gmail.com"
-              git config user.name "Isio19"
-              sudo npm install -g gh-pages --save-dev
+      - run:
+          name: Installing dependencies
+          command: |
+            ls target/site/apidocs -a
+            npm install need sudo
+            git config user.email "gerome12327@gmail.com"
+            git config user.name "Isio19"
+            sudo npm install -g gh-pages --save-dev
       - add_ssh_keys:
-          fingerprints: 
-              - SHA256:yH48Xn1/r1Kx7GgzPLZAfLiXulYFDQ8ECM+sE5XlVAw
-      - run : gh-pages --dist target/site/apidocs
+          fingerprints:
+            - SHA256:yH48Xn1/r1Kx7GgzPLZAfLiXulYFDQ8ECM+sE5XlVAw
+      - run: gh-pages --dist target/site/apidocs
 
 orbs:
   codecov: codecov/codecov@4.0.1
@@ -73,5 +73,5 @@ workflows:
     jobs:
       - build-docs
       - deploy-docs:
-        requires: 
-          - build-docs
+          requires:
+            - build-docs
