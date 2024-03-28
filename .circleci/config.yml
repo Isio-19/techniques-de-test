@@ -72,4 +72,6 @@ workflows:
   make-docs:
     jobs:
       - build-docs
-      - deploy-docs
+      - deploy-docs:
+        requires: 
+          - build-docs
