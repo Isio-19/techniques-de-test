@@ -41,10 +41,10 @@ jobs:
       - checkout
       - attach_workspace:
           at: target/site
-      - run: npm install need sudo
-      - run: sudo npm install -g gh-pages --save-dev
-      - run: git config user.email "gerome12327@gmail.com"
-      - run: git config user.name "Isio19"
+      - run: npm install need 
+          sudo npm install -g gh-pages
+          git config user.email "gerome12327@gmail.com"
+          git config user.name "Isio19"
       - add_ssh_keys:
           fingerprints:
             - SHA256:yH48Xn1/r1Kx7GgzPLZAfLiXulYFDQ8ECM+sE5XlVAw
