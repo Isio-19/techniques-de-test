@@ -57,9 +57,9 @@ workflows:
   test:
     jobs:
       - test:
-        filters:
-          branches:
-            only: master
+          filters:
+              branches:
+                only: master
   upload-to-codecov:
     jobs:
       - codecov-upload
