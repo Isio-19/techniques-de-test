@@ -45,7 +45,7 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 
     @Override
     public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
-        if (index < 0 || index > 150)
+        if (index < 0 || index > 151)
             throw new PokedexException("Given Pokemon ID is out of range.");
 
         JSONObject pokemon = pokemonMetadata.getJSONObject(index);
